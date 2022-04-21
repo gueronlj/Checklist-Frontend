@@ -23,3 +23,12 @@ code {
 h1,h4{
    margin: 10px;
 }
+
+img{
+   max-width: 1.5em;
+   text-align: center;
+}
+
+.buttonColumn{
+   text-align: center;
+}

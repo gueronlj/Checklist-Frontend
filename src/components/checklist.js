@@ -86,10 +86,10 @@ const Checklist = (props) => {
             <tr>
                <th>Loaded</th>
                <th>Name</th>
+               <th>Recommended Qty</th>
                <th>Qty</th>
                <th></th>
                <th></th>
-               <th>Recommended Qty</th>
             </tr>
          </thead>
          <tbody>
@@ -106,10 +106,10 @@ const Checklist = (props) => {
                            </form>
                         </td>
                         <td style={item.status===true?{color:'#89DF87'}:{}}>{item.name}</td>
-                        <td>{item.quantity}</td>
-                        <td><button onClick={(event)=>handleIncrease(item)}>+</button></td>
-                        <td><button onClick={(event)=>handleDecrease(item)}>-</button></td>
                         <td>{item.recommended}</td>
+                        <td>{item.quantity}</td>
+                        <td className="buttonColumn"><img onClick={(event)=>handleIncrease(item)} src="./images/plus-white.png"/></td>
+                        <td className="buttonColumn"><img onClick={(event)=>handleDecrease(item)} src="./images/minus-white.png"/></td>
                      </tr>
                   )
                }
