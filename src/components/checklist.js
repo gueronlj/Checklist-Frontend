@@ -13,7 +13,7 @@ const Checklist = (props) => {
 
    const getList = () =>{
       axios
-         .get('endpoint'+'checklist')
+         .get(endpoint+'checklist')
          .then((response, error)=>{
             if(error){
                console.log(error)
@@ -34,13 +34,13 @@ const Checklist = (props) => {
 
    const handleCheckbox = (item) =>{
       if(item.status === true){
-         axios.put(`endpoint`+`checklist/disable/${item._id}`)
+         axios.put(endpoint+`checklist/disable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is unloaded');
                getList()
             })
       } else {
-         axios.put(`endpoint`+`checklist/enable/${item._id}`)
+         axios.put(endpoint+`checklist/enable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is loaded');
                getList()
@@ -50,7 +50,7 @@ const Checklist = (props) => {
 
    const handleIncrease = (item) =>{
       axios
-         .put(`endpoint`+`checklist/increase/${item._id}`)
+         .put(endpoint+`checklist/increase/${item._id}`)
          .then((response,error)=>{
             if(error){
                console.log(error);
@@ -63,7 +63,7 @@ const Checklist = (props) => {
 
    const handleDecrease = (item) =>{
       axios
-         .put(`endpoint`+`checklist/decrease/${item._id}`)
+         .put(endpoint+`checklist/decrease/${item._id}`)
          .then((response,error)=>{
             if(error){
                console.log(error);
