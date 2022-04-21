@@ -4,6 +4,8 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
+//const endpoint ='http://localhost:3001/'
 
 const Checklist = (props) => {
 
@@ -11,7 +13,7 @@ const Checklist = (props) => {
 
    const getList = () =>{
       axios
-         .get('http://localhost:3001/checklist')
+         .get('endpoint'+'checklist')
          .then((response, error)=>{
             if(error){
                console.log(error)
@@ -24,7 +26,7 @@ const Checklist = (props) => {
 
    const uncheckAll = () => {
       axios
-         .put('http://localhost:3001/checklist/uncheck-all')
+         .put(endpoint+'checklist/uncheck-all')
          .then((response, error)=>{
             getList()
          })
@@ -32,13 +34,13 @@ const Checklist = (props) => {
 
    const handleCheckbox = (item) =>{
       if(item.status === true){
-         axios.put(`http://localhost:3001/checklist/disable/${item._id}`)
+         axios.put(`endpoint`+`checklist/disable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is unloaded');
                getList()
             })
       } else {
-         axios.put(`http://localhost:3001/checklist/enable/${item._id}`)
+         axios.put(`endpoint`+`checklist/enable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is loaded');
                getList()
@@ -48,7 +50,7 @@ const Checklist = (props) => {
 
    const handleIncrease = (item) =>{
       axios
-         .put(`http://localhost:3001/checklist/increase/${item._id}`)
+         .put(`endpoint`+`checklist/increase/${item._id}`)
          .then((response,error)=>{
             if(error){
                console.log(error);
@@ -61,7 +63,7 @@ const Checklist = (props) => {
 
    const handleDecrease = (item) =>{
       axios
-         .put(`http://localhost:3001/checklist/decrease/${item._id}`)
+         .put(`endpoint`+`checklist/decrease/${item._id}`)
          .then((response,error)=>{
             if(error){
                console.log(error);
