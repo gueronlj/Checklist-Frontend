@@ -105,7 +105,7 @@ const Checklist = (props) => {
                                  onChange={(event)=>handleCheckbox(item)}/>
                            </form>
                         </td>
-                        <td>{item.name}</td>
+                        <td style={item.status===true?{color:'#89DF87'}:{}}>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td><button onClick={(event)=>handleIncrease(item)}>+</button></td>
                         <td><button onClick={(event)=>handleDecrease(item)}>-</button></td>
