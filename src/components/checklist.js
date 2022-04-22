@@ -9,41 +9,18 @@ const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 
 const Checklist = (props) => {
 
-   const [items, setItems] = useState([])
-
-   const getList = () =>{
-      axios
-         .get(endpoint+'checklist')
-         .then((response, error)=>{
-            if(error){
-               console.log(error)
-            } else {
-               setItems(response.data)
-               console.log('Item list retrieved', response.data);
-            }
-         })
-   }
-
-   const uncheckAll = () => {
-      axios
-         .put(endpoint+'checklist/uncheck-all')
-         .then((response, error)=>{
-            getList()
-         })
-   }
-
    const handleCheckbox = (item) =>{
       if(item.status === true){
          axios.put(endpoint+`checklist/disable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is unloaded');
-               getList()
+               props.getList()
             })
       } else {
          axios.put(endpoint+`checklist/enable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is loaded');
-               getList()
+               props.getList()
             })
       }
    }
@@ -57,7 +34,7 @@ const Checklist = (props) => {
             }else{
                console.log("Item qty increased",response.data);
             }
-            getList()
+            props.getList()
          })
    }
 
@@ -70,17 +47,16 @@ const Checklist = (props) => {
             }else{
                console.log("Item qty decreased",response.data);
             }
-            getList()
+            props.getList()
          })
    }
 
    useEffect(() => {
-      getList()
+      props.getList()
    },[])
 
    return (
       <>
-      <Button variant="dark" onClick={uncheckAll} className="uncheck-button">Uncheck All</Button>
       <Table striped bordered hover variant="dark" className="checklist">
          <thead>
             <tr>
@@ -93,7 +69,7 @@ const Checklist = (props) => {
             </tr>
          </thead>
          <tbody>
-            {items.map((item)=>{
+            {props.items.map((item)=>{
                   return(
                      <tr key={item._id}>
                         <td>
