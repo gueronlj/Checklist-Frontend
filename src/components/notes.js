@@ -9,6 +9,7 @@ const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 const Notes = (props) => {
 
    const [notes, setNotes] = useState([])
+   const [showInput, setShowInput] = useState(false)
 
    const getNotes = ()=> {
       axios.get(endpoint+'notes')
@@ -30,12 +31,14 @@ const Notes = (props) => {
       {notes.map((note)=> {
          return(
             <card key={notes._id}>
-               <h5>{note.message}</h5>
+               <h6>{note.message}</h6>
                <p>{note.createdAt}</p>
             </card>
          )
       })}
-      <Button variant="warning">Add New</Button>
+      <Button
+         variant="warning"
+         onClick={()=>setShowInput(true)}>Add New</Button>
       </main-container>
    )
 }
