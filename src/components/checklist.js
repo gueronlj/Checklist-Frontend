@@ -2,11 +2,27 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 //const localendpoint ='http://localhost:3001/'
 
 const Checklist = (props) => {
+
+   const [items, setItems] = useState([])
+
+   const getList = () =>{
+      axios
+         .get(endpoint+'checklist')
+         .then((response, error)=>{
+            if(error){
+               console.log(error)
+            } else {
+               setItems(response.data)
+               console.log('Item list retrieved', response.data);
+            }
+         })
+   }
 
    const handleCheckbox = (item) =>{
       if(item.status === true){
@@ -24,6 +40,14 @@ const Checklist = (props) => {
       }
    }
 
+   const uncheckAll = () => {
+      axios
+         .put(endpoint+'checklist/uncheck-all')
+         .then((response, error)=>{
+            getList()
+         })
+   }
+
    const handleIncrease = (item) =>{
       axios
          .put(endpoint+`checklist/increase/${item._id}`)
@@ -33,7 +57,7 @@ const Checklist = (props) => {
             }else{
                console.log("Item qty increased",response.data);
             }
-            props.getList()
+            getList()
          })
    }
 
@@ -46,16 +70,17 @@ const Checklist = (props) => {
             }else{
                console.log("Item qty decreased",response.data);
             }
-            props.getList()
+            getList()
          })
    }
 
-   useEffect(() => {
-      props.getList()
-   },[])
+   useEffect(() => {getList()},[])
 
    return (
-      <>
+      <main-container>
+      <Button variant="dark"
+      onClick={uncheckAll}
+      className="uncheck-button">Uncheck All</Button>
       <Table striped bordered hover variant="dark" className="checklist">
          <thead>
             <tr>
@@ -68,7 +93,7 @@ const Checklist = (props) => {
             </tr>
          </thead>
          <tbody>
-            {props.items.map((item)=>{
+            {items.map((item)=>{
                   return(
                      <tr key={item._id}>
                         <td>
@@ -91,7 +116,7 @@ const Checklist = (props) => {
             )}
          </tbody>
       </Table>
-      </>
+      </main-container>
    )
 }
 

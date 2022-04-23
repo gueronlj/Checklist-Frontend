@@ -8,10 +8,35 @@ const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 
 const Notes = (props) => {
 
+   const [notes, setNotes] = useState([])
+
+   const getNotes = ()=> {
+      axios.get(endpoint+'notes')
+         .then((res, error)=>{
+            if(error){
+               res.json(error);
+               console.log(error);
+            }else{
+               setNotes(res.data)
+               console.log('notes retrieved');
+            }
+         })
+   }
+
+   useEffect(()=> {getNotes()},[])
+
    return(
-      <>
-         <h1>Notes here</h1>
-      </>
+      <main-container>
+      {notes.map((note)=> {
+         return(
+            <card key={notes._id}>
+               <h5>{note.message}</h5>
+               <p>{note.createdAt}</p>
+            </card>
+         )
+      })}
+      <Button variant="warning">Add New</Button>
+      </main-container>
    )
 }
 
