@@ -29,13 +29,13 @@ const Checklist = (props) => {
          axios.put(endpoint+`checklist/disable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is unloaded');
-               props.getList()
+               getList()
             })
       } else {
          axios.put(endpoint+`checklist/enable/${item._id}`)
             .then((response, error)=>{
                console.log('Item is loaded');
-               props.getList()
+               getList()
             })
       }
    }
