@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 //const localendpoint ='http://localhost:3001/'
 

@@ -9,7 +9,19 @@ const Menu = (props)=>{
 
    return(
       <>
-         <Button variant="dark" onClick={props.uncheckAll} className="uncheck-button">Uncheck All</Button>
+         <Button variant="dark"
+         onClick={props.uncheckAll}
+         className="uncheck-button">Uncheck All</Button>
+
+         <Button variant="dark"
+            onClick={()=>{props.setShowList(true);props.setShowNotes(false)}}
+            className="list-button">Checklist</Button>
+
+         <Button variant="dark"
+            onClick={()=>{props.setShowNotes(true);props.setShowList(false)}}
+            className="notes-button">Notes</Button>
+
+
       </>
    )
 }
