@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button'
+import { formatRelative, parseJSON } from 'date-fns'
 const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 //const localendpoint ='http://localhost:3001/'
 
@@ -10,8 +11,9 @@ const Notes = (props) => {
 
    const [notes, setNotes] = useState([])
    const [showInput, setShowInput] = useState(false)
+   const [newMesage,setNewMessage] = useState('')
 
-   const getNotes = ()=> {
+   const getNotes=()=>{
       axios.get(endpoint+'notes')
          .then((res, error)=>{
             if(error){
@@ -24,21 +26,62 @@ const Notes = (props) => {
          })
    }
 
-   useEffect(()=> {getNotes()},[])
+      const handleNoteSubmit=(event)=>{
+      event.preventDefault()
+      axios.post(endpoint+'notes/new',{message:newMesage})
+         .then((res,error)=>{
+            if(error){
+               res.json(error);
+               console.log(error);
+            }else{
+               getNotes()
+            }
+         })
+   }
+
+   const deleteMessage=(note)=>{
+      axios.delete(endpoint+'notes/'+note._id)
+         .then((res,error)=>{
+            if(error){
+               res.json(error);
+               console.log(error);
+            }else{
+               getNotes()
+            }
+         })
+   }
+
+   const takeUserInput=(event)=>{
+      setNewMessage(event.target.value)
+   }
+
+   const todaysDate = new Date();
+   // const formatRelative = require('date-fns/formatRelative')
+
+   useEffect(()=>{getNotes()},[])
 
    return(
       <main-container>
-      {notes.map((note)=> {
-         return(
-            <card key={notes._id}>
-               <h6>{note.message}</h6>
-               <p>{note.createdAt}</p>
-            </card>
-         )
-      })}
-      <Button
-         variant="warning"
-         onClick={()=>setShowInput(true)}>Add New</Button>
+         {notes.map((note)=> {
+            return(
+               <div key={note._id} className='note'>
+                  <div className='note-top'>
+                     <h6>
+                        {note.message}
+
+                     </h6>
+                     <img src="./images/xthin.png" onClick={()=>deleteMessage(note)}/>
+                  </div>
+                  <div className='note-bottom'>
+                     <p>{formatRelative(parseJSON(note.createdAt), todaysDate)}</p>
+                  </div>
+               </div>
+            )
+         })}
+         <form className='sendMsg' onSubmit={handleNoteSubmit}>
+             <textarea onChange={takeUserInput} /><br/>
+             <input className = "button" type='submit' value='Submit'/>
+         </form>
       </main-container>
    )
 }

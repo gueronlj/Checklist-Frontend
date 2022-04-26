@@ -15,8 +15,7 @@ const App = () => {
 
    return (
      <main>
-         <h1>Checklist</h1>
-         <h4>for Hangry Panda</h4>
+         <h1>Hangry Panda Helper</h1>
          <Menu
             showNotes={showNotes}
             setShowNotes={setShowNotes}

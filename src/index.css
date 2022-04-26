@@ -12,16 +12,19 @@ code {
     monospace;
 }
 
-.uncheck-button {
-   margin:10px;
+.uncheck-button, .notes-button, .list-button {
+   margin-left:10px;
+   margin-bottom: 10px;
 }
 
-h1,h4{
-   margin: 10px;
+h1 {
+   margin-left: 10px;
+   margin-bottom: 40px;
 }
 
 img{
    max-width: 1.2em;
+   max-height: 1.2em;
    text-align: center;
 }
 
@@ -30,5 +33,29 @@ img{
 }
 
 table {
-   font-size: 18px;
+   font-size: 16px;
+}
+
+.note{
+   background-color: #FAE269;
+   border-radius: 5px;
+   padding: 5px;
+   margin: 10px;
+}
+
+form input{
+   margin: 10px;
+   margin-top: 0px;
+   background-color: white;
+   border-radius: 5px;
+}
+
+form textarea {
+   width: 95vw;
+   margin: 10px;
+}
+
+.note-top{
+   display: flex;
+   justify-content: space-between;
 }
