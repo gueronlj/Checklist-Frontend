@@ -10,8 +10,10 @@ const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
 const Checklist = (props) => {
 
    const [items, setItems] = useState([])
+   const [loading, setLoading] = useState(false)
 
-   const getList = () =>{
+   const getList = async () =>{
+     setLoading(true)
       axios
          .get(endpoint+'checklist')
          .then((response, error)=>{
@@ -19,7 +21,7 @@ const Checklist = (props) => {
                console.log(error)
             } else {
                setItems(response.data)
-               console.log('Item list retrieved', response.data);
+               setLoading(false)
             }
          })
    }
@@ -28,13 +30,11 @@ const Checklist = (props) => {
       if(item.status === true){
          axios.put(endpoint+`checklist/disable/${item._id}`)
             .then((response, error)=>{
-               console.log('Item is unloaded');
                getList()
             })
       } else {
          axios.put(endpoint+`checklist/enable/${item._id}`)
             .then((response, error)=>{
-               console.log('Item is loaded');
                getList()
             })
       }
@@ -74,7 +74,9 @@ const Checklist = (props) => {
          })
    }
 
-   useEffect(() => {getList()},[])
+   useEffect(() => {
+     getList()
+   },[])
 
    return (
       <main-container>
@@ -93,25 +95,24 @@ const Checklist = (props) => {
          </thead>
          <tbody>
             {items.map((item)=>{
-                  return(
-                     <tr key={item._id}>
-                        <td>
-                           <form>
-                              <input
-                                 type='checkbox'
-                                 name='status'
-                                 checked={item.status}
-                                 onChange={(event)=>handleCheckbox(item)}/>
-                           </form>
-                        </td>
-                        <td style={item.status===true?{color:'#89DF87'}:{}}>{item.name}</td>
-                        <td>{item.quantity}/{item.recommended}</td>
-                        <td className="buttonColumn"><img onClick={(event)=>handleIncrease(item)} src="./images/plus-white.png"/></td>
-                        <td className="buttonColumn"><img onClick={(event)=>handleDecrease(item)} src="./images/minus-white.png"/></td>
-                     </tr>
-                  )
-               }
-            )}
+               return(
+                 <tr key={item._id}>
+                    <td>
+                       <form>
+                          <input
+                             type='checkbox'
+                             name='status'
+                             checked={item.status}
+                             onChange={(event)=>handleCheckbox(item)}/>
+                       </form>
+                    </td>
+                    <td style={item.status===true?{color:'#89DF87'}:{}}>{item.name}</td>
+                    <td>{item.quantity}/{item.recommended}</td>
+                    <td className="buttonColumn"><img onClick={(event)=>handleIncrease(item)} src="./images/plus-white.png"/></td>
+                    <td className="buttonColumn"><img onClick={(event)=>handleDecrease(item)} src="./images/minus-white.png"/></td>
+                 </tr>
+               )
+            })}
          </tbody>
       </Table>
       </main-container>
