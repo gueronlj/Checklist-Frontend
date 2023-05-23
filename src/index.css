@@ -12,21 +12,62 @@ code {
     monospace;
 }
 
-.uncheck-button, .notes-button, .list-button {
-   margin-left:10px;
-   margin-bottom: 10px;
+.notes-button{
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+nav button{
+  color:white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  width: 33%;
+}
+
+nav button:hover, .header button:hover{
+  background-color: #212529;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 0px;
+  width: 100vw;
+  background-color: black;
+  color:white;
+}
+
+.header button{
+  align-self: flex-end;
+  background-color: inherit;
+  border:none;
+  color: white;
+  padding: 10px;
 }
 
 h1 {
-   margin-left: 10px;
-   margin-bottom: 40px;
+   text-align: center;
 }
 
 .buttonColumn{
    text-align: center;
 }
 
+nav{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-evenly;
+  background-color: black;
+  border-bottom: 1px solid white;
+}
+
 table {
+   margin-top: 3px;
    font-size: 16px;
 }
 
@@ -73,6 +114,7 @@ form textarea {
 }
 
 #submit{
+  margin-top: 1em;
   color:black;
   border: 1px solid black;
   align-self: center;
@@ -99,3 +141,54 @@ img{
    align-self: center;
    margin-bottom: 2em;
  }
+
+ #error-text{
+   color:red;
+   margin-bottom: 2em;
+   margin-left: 16px;
+ }
+
+.error{
+  color:red;
+  text-align: center;
+  font-size: 13px;
+  border: 1px solid red;
+  padding: 7px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.time-clock{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5em;
+}
+
+.time-clock button{
+  border: 1px solid;
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+  border-radius: 3px;
+}
+
+#clockin{
+  border-color: green;
+  color: green;
+  background-color: lightgreen;
+}
+
+#clockout{
+  border-color: red;
+  color: red;
+  background-color: pink;
+}
+
+#clockin:disabled, #clockout:disabled{
+  border-color: grey;
+  color: grey;
+  background-color: white;
+  opacity: .3;
+}

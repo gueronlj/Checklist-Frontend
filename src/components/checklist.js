@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 const endpoint = 'https://hangrypanda-backend.herokuapp.com/'
-//const localendpoint ='http://localhost:3001/'
 
 const Checklist = (props) => {
 
@@ -13,17 +12,17 @@ const Checklist = (props) => {
    const [loading, setLoading] = useState(false)
 
    const getList = async () =>{
-     setLoading(true)
-      axios
-         .get(endpoint+'checklist')
-         .then((response, error)=>{
-            if(error){
-               console.log(error)
-            } else {
-               setItems(response.data)
-               setLoading(false)
-            }
-         })
+    setLoading(true)
+    axios
+       .get(endpoint+'checklist')
+       .then((response, error)=>{
+          if(error){
+             console.log(error)
+          } else {
+             setItems(response.data)
+             setLoading(false)
+          }
+       })
    }
 
    const handleCheckbox = (item) =>{
@@ -80,9 +79,12 @@ const Checklist = (props) => {
 
    return (
       <main-container>
-      <Button variant="dark"
-      onClick={uncheckAll}
-      className="uncheck-button">Uncheck All</Button>
+      <nav>
+        <button
+          onClick={uncheckAll}
+          className="uncheck-button">Uncheck All
+        </button>
+      </nav>
       <Table striped bordered hover variant="dark" className="checklist">
          <thead>
             <tr>
@@ -108,8 +110,8 @@ const Checklist = (props) => {
                     </td>
                     <td style={item.status===true?{color:'#89DF87'}:{}}>{item.name}</td>
                     <td>{item.quantity}/{item.recommended}</td>
-                    <td className="buttonColumn"><img onClick={(event)=>handleIncrease(item)} src="./images/plus-white.png"/></td>
-                    <td className="buttonColumn"><img onClick={(event)=>handleDecrease(item)} src="./images/minus-white.png"/></td>
+                    <td className="buttonColumn"><img onClick={(event)=>handleIncrease(item)} src="./images/plus-white.png" alt=""/></td>
+                    <td className="buttonColumn"><img onClick={(event)=>handleDecrease(item)} src="./images/minus-white.png" alt=""/></td>
                  </tr>
                )
             })}
