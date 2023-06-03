@@ -73,12 +73,13 @@ table {
 }
 
 .note {
-  display: flex;
-  flex-direction: column;
+   display: flex;
+   flex-direction: column;
    background-color: #FAE269;
    border-radius: 5px;
    padding: 10px;
    margin: 10px;
+   width: 380px;
 }
 
 .note-bottom {
@@ -94,8 +95,29 @@ form input{
 }
 
 form textarea {
-   width: 95vw;
-   margin: 10px;
+   width: 380px;
+   margin: 0px;
+}
+
+main-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #212529;
+  height: 100vh;
+}
+
+input.button{
+  padding: 10px;
+  margin: 0px;
+  border-radius: 4px;
+  color: black;
+  background-color: white;
+}
+
+input.button:hover{
+  color:white;
+  background-color: black;
 }
 
 .login-form{
