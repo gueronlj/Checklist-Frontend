@@ -12,19 +12,45 @@ code {
     monospace;
 }
 
-.uncheck-button, .notes-button, .list-button {
-   margin-left:10px;
-   margin-bottom: 10px;
+.notes-button{
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+nav button{
+  color:white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  width: 33%;
+}
+
+nav button:hover, .header button:hover{
+  background-color: #212529;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 0px;
+  width: 100vw;
+  background-color: black;
+  color:white;
+  border-bottom: 1px solid white;
+}
+
+.header button{
+  align-self: flex-end;
+  background-color: inherit;
+  border:none;
+  color: white;
+  padding: 10px;
 }
 
 h1 {
-   margin-left: 10px;
-   margin-bottom: 40px;
-}
-
-img{
-   max-width: 1.2em;
-   max-height: 1.2em;
    text-align: center;
 }
 
@@ -32,15 +58,32 @@ img{
    text-align: center;
 }
 
+nav{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-evenly;
+  background-color: black;
+  border-bottom: 1px solid white;
+}
+
 table {
+   margin-top: 3px;
    font-size: 16px;
 }
 
-.note{
+.note {
+  display: flex;
+  flex-direction: column;
    background-color: #FAE269;
    border-radius: 5px;
-   padding: 5px;
+   padding: 10px;
    margin: 10px;
+}
+
+.note-bottom {
+  display: flex;
+  flex-direction: row;
 }
 
 form input{
@@ -55,7 +98,111 @@ form textarea {
    margin: 10px;
 }
 
+.login-form{
+  background-color: white;
+  border-radius: 5px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+#login-page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  background-color: black;
+}
+
+ #login-page h1{
+  margin-bottom: 1.5em;
+  align-self: center;
+}
+
+#submit{
+  margin-top: 1em;
+  color:black;
+  border: 1px solid black;
+  align-self: center;
+}
+
+#submit:hover{
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
 .note-top{
    display: flex;
    justify-content: space-between;
+}
+img{
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-align: center;
+}
+#logo{
+   max-width: 250px;
+   max-height: 250px;
+   align-self: center;
+   margin-bottom: 2em;
+ }
+
+ #error-text{
+   color:red;
+   margin-bottom: 2em;
+   margin-left: 16px;
+ }
+ .time-stamp{
+   margin: 0;
+   align-self: flex-end;
+   font-weight: 600;
+ }
+
+.error{
+  color:red;
+  text-align: center;
+  font-size: 13px;
+  border: 1px solid red;
+  padding: 7px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.time-clock{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em;
+  background-color: #212529;
+}
+
+.time-clock button{
+  border: 1px solid;
+  margin: 10px;
+  height: 70px;
+  width: 120px;
+  border-radius: 3px;
+}
+
+#clockin{
+  border-color: green;
+  color: green;
+  background-color: lightgreen;
+}
+
+#clockout{
+  border-color: red;
+  color: red;
+  background-color: pink;
+}
+
+#clockin:disabled, #clockout:disabled{
+  border-color: grey;
+  color: grey;
+  background-color: white;
+  opacity: .3;
 }
