@@ -64,13 +64,13 @@ const Notes = (props) => {
             return(
                <div key={note._id} className='note'>
                   <div className='note-top'>
-                     <h6>
-                        {note.message}
-                     </h6>
+                     <p>
+                        <p className="time-stamp">{formatRelative(parseJSON(note.createdAt), todaysDate)}</p>
+                     </p>
                      <img src="./images/xthin.png" onClick={()=>deleteMessage(note)} alt=""/>
                   </div>
                   <div className='note-bottom'>
-                     <p>{formatRelative(parseJSON(note.createdAt), todaysDate)}</p>
+                    {note.message}
                   </div>
                </div>
             )

@@ -18,7 +18,7 @@ const TimeClock = () => {
   }
 
   const clockOut = async() => {
-    const userId = '640b5ad33537b73b6b694755';
+    const userId = '1';
     const token = await getAccessTokenSilently()
     try{
       clockOutDB(token, userId)

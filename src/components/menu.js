@@ -8,14 +8,12 @@ const Menu = (props)=>{
       <button
         onClick={()=>{props.setShowList(true);props.setShowNotes(false)}}
         className="list-button">Checklist</button>
-
       <button
         onClick={()=>{props.setShowNotes(true);props.setShowList(false)}}
         className="notes-button">Notes</button>
-
       <button
         onClick={()=>{
-          props.showTimeClock?props.setShowTimeClock(false):props.setShowTimeClock(true)
+          //props.showTimeClock?props.setShowTimeClock(false):props.setShowTimeClock(true)
         }}
         className="timeclock-button">Clock In/Out</button>
     </nav>

@@ -67,11 +67,10 @@ const App = () => {
     return (
       <main>
       {isAuthenticated &&
-        <div className="header">{`Welcome, ${userInfo}`}
+        <div className="header">{`${userInfo}`}
            <button onClick={signOut}>Logout</button>
         </div>
       }
-        <h1>Hangry Panda Helper</h1>
         <Menu
           showNotes={showNotes}
           setShowNotes={setShowNotes}

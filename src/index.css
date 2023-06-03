@@ -39,6 +39,7 @@ nav button:hover, .header button:hover{
   width: 100vw;
   background-color: black;
   color:white;
+  border-bottom: 1px solid white;
 }
 
 .header button{
@@ -71,11 +72,18 @@ table {
    font-size: 16px;
 }
 
-.note{
+.note {
+  display: flex;
+  flex-direction: column;
    background-color: #FAE269;
    border-radius: 5px;
-   padding: 5px;
+   padding: 10px;
    margin: 10px;
+}
+
+.note-bottom {
+  display: flex;
+  flex-direction: row;
 }
 
 form input{
@@ -147,6 +155,11 @@ img{
    margin-bottom: 2em;
    margin-left: 16px;
  }
+ .time-stamp{
+   margin: 0;
+   align-self: flex-end;
+   font-weight: 600;
+ }
 
 .error{
   color:red;
@@ -163,7 +176,8 @@ img{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1.5em;
+  padding: 1.5em;
+  background-color: #212529;
 }
 
 .time-clock button{
