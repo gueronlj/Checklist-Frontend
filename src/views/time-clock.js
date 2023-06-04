@@ -32,10 +32,10 @@ const TimeClock = () => {
   }
 
   return (
-      <div className='time-clock'>
-        <button id="clockin" onClick={clockIn} disabled={clockInDisabled} >Clock In</button>
-        <button id="clockout" onClick={clockOut} disabled={clockOutDisabled} >Clock Out</button>
-      </div>
+    <div className='time-clock'>
+      <button id="clockin" onClick={clockIn} disabled={clockInDisabled} >Clock In</button>
+      <button id="clockout" onClick={clockOut} disabled={clockOutDisabled} >Clock Out</button>
+    </div>
   );
 }
 export default TimeClock;
